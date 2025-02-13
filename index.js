@@ -1,14 +1,14 @@
 import express from "express";
 
 const app = express();
-const port = process.env.PORT || 3020; // 8080 is a common default
+const port = 3020; // 8080 is a common default
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  // const host = req.headers.host;
-  // const subdomain = host.split(".")[0];
+app.get("*", (req, res) => {
+  const host = req.headers.host;
+  const subdomain = host.split(".")[0];
   try {
     res.status(200).send(`
       <!DOCTYPE html>
@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
           <meta name="msapplication-TileImage" content="mstile-144x144.png" />
           
           <!-- PWA manifest -->
-          <link rel="manifest" href="https://firebasestorage.googleapis.com/v0/b/eliteacademyeg-a7552.appspot.com/o/manifests%2Fdev-beta.json?alt=media" />
+          <link rel="manifest" href="https://firebasestorage.googleapis.com/v0/b/eliteacademyeg-a7552.appspot.com/o/manifests%2F${subdomain}.json?alt=media" />
           
           <!-- iOS Specific PWA Meta Tags -->
           <meta name="apple-mobile-web-app-capable" content="yes">
