@@ -27,8 +27,8 @@ app.get("*", (req, res) => {
           rel="stylesheet"
           href="https://unpkg.com/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
           />
-          <script defer="defer" src="https://firebasestorage.googleapis.com/v0/b/eliteacademyeg-a7552.appspot.com/o/qashqool-main-webpage%2Fmain.a75b52b8.js?alt=media.js"></script>
-          <link href="https://firebasestorage.googleapis.com/v0/b/eliteacademyeg-a7552.appspot.com/o/qashqool-main-webpage%2Fmain.0c91bfa9.css?alt=media" rel="stylesheet" />
+          <script defer="defer" src="https://eliteacademymedia.s3.us-east-1.amazonaws.com/eliteacademymedia/qashqool/main.a75b52b8.js"></script>
+          <link href="https://eliteacademymedia.s3.us-east-1.amazonaws.com/eliteacademymedia/qashqool/main.0c91bfa9.css" rel="stylesheet" />
           <meta name="application-name" content="&nbsp;" />
           <meta name="msapplication-TileColor" content="#FFFFFF" />
           <meta name="msapplication-TileImage" content="mstile-144x144.png" />
