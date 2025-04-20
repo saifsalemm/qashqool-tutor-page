@@ -60,7 +60,7 @@ app.use(express.json());
 //   }
 // });
 
-app.get("/", async (req, res) => {
+app.get("*", async (req, res) => {
   try {
     // Fetch the current version from a placeholder endpoint
     const response1 = await fetch(
@@ -156,29 +156,4 @@ app.get("/", async (req, res) => {
     console.error("Error fetching version or manifest:", error);
     res.status(500).send("Internal Server Error");
   }
-});
-
-// Endpoint to delete the "appVersion" key
-app.delete("/version", async (req, res) => {
-  const authHeader = req.headers["authorization"];
-
-  if (
-    !authHeader ||
-    authHeader !== "Bearer 597eb92e2c6585cd60c827f354dcd7a18731be86"
-  ) {
-    res.status(401).send("Unauthorized");
-    return;
-  }
-
-  try {
-    await redisClient.del("appVersion");
-    res.status(200).send("appVersion key deleted");
-  } catch (error) {
-    console.error("Error deleting appVersion key:", error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Qashqool server listening on port ${port}`);
 });
