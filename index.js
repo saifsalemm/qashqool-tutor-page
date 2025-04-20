@@ -151,7 +151,7 @@ app.get("/", async (req, res) => {
   </body>
 </html>`;
 
-    res.send(html);
+    res.status(200).send(html);
   } catch (error) {
     console.error("Error fetching version or manifest:", error);
     res.status(500).send("Internal Server Error");
