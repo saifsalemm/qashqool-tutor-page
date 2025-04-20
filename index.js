@@ -63,11 +63,11 @@ app.use(express.json());
 app.get("/", async (req, res) => {
   try {
     // Fetch the current version from a placeholder endpoint
-    const res = await fetch(
+    const response1 = await fetch(
       "https://api.eliteacademyeg.com/wp-json/elite/v2/check-build-version?security_key=12d7e165e3b892bdf322f6c3117554249ffc2405"
     );
-    const response = await res.json();
-    const version = response.data;
+    const data1 = await response1.json();
+    const version = data1.data;
 
     const hostname = req.hostname;
 
@@ -75,12 +75,12 @@ app.get("/", async (req, res) => {
 
     if (hostname.split(".").length > 2) {
       // Fetch the current version from a placeholder endpoint
-      const response = await fetch(
+      const response2 = await fetch(
         "https://api.eliteacademyeg.com/wp-json/elite/v2/get-manifest?subdomain=" +
           hostname.split(".")[0]
       );
-      const data = await response.json();
-      tutorData = data.data;
+      const data2 = await response2.json();
+      tutorData = data2.data;
     }
 
     // Use the version to concatenate the .js and .css file URLs
