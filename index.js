@@ -67,9 +67,11 @@ app.get("/", async (req, res) => {
       "https://api.eliteacademyeg.com/wp-json/elite/v2/check-build-version?security_key=12d7e165e3b892bdf322f6c3117554249ffc2405"
     );
     const response = await res.json();
-    version = response.data;
+    const version = response.data;
 
     const hostname = req.hostname;
+
+    let tutorData = null;
 
     if (hostname.split(".").length > 2) {
       // Fetch the current version from a placeholder endpoint
@@ -151,7 +153,7 @@ app.get("/", async (req, res) => {
 
     res.send(html);
   } catch (error) {
-    console.error("Error fetching version or interacting with Redis:", error);
+    console.error("Error fetching version or manifest:", error);
     res.status(500).send("Internal Server Error");
   }
 });
