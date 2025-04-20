@@ -1,4 +1,9 @@
 import express from "express";
+import { createClient } from "redis"; // Ensure this is installed
+
+const redisClient = await createClient()
+  .on("error", (err) => console.log("Redis Client Error", err))
+  .connect();
 
 const app = express();
 const port = 3020; // 8080 is a common default
