@@ -84,12 +84,8 @@ app.get("/", async (req, res) => {
     }
 
     // Use the version to concatenate the .js and .css file URLs
-    const jsFile = `https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/prod/script-${
-      version ?? 1
-    }.js`;
-    const cssFile = `https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/prod/style-${
-      version ?? 1
-    }.css`;
+    const jsFile = `https://firebasestorage.googleapis.com/v0/b/eliteacademyeg-beta.firebasestorage.app/o/main.39be74e1.js?alt=media`;
+    const cssFile = `https://firebasestorage.googleapis.com/v0/b/eliteacademyeg-beta.firebasestorage.app/o/main.d02d7412.css?alt=media`;
 
     const html = `<!DOCTYPE html>
 <html dir="rtl" lang="ar">
