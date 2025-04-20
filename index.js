@@ -61,9 +61,6 @@ app.use(express.json());
 // });
 
 app.get("/", async (req, res) => {
-  res.send(
-    "Welcome to the LiveKit token server. Use the /token endpoint to get a token."
-  );
   try {
     // Check if "appVersion" exists in Redis
     let version = await redisClient.get("appVersion");
