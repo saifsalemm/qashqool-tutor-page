@@ -1,9 +1,4 @@
 import express from "express";
-import { createClient } from "redis"; // Ensure this is installed
-
-const redisClient = await createClient()
-  .on("error", (err) => console.log("Redis Client Error", err))
-  .connect();
 
 const app = express();
 const port = 3020; // 8080 is a common default
@@ -67,42 +62,23 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   try {
-    // Check if "appVersion" exists in Redis
-    let version = await redisClient.get("appVersion");
-
-    if (!version) {
-      // Fetch the current version from a placeholder endpoint
-      const res = await fetch(
-        "https://api.eliteacademyeg.com/wp-json/elite/v2/check-build-version?security_key=12d7e165e3b892bdf322f6c3117554249ffc2405"
-      );
-      const response = await res.json();
-      version = response.data;
-
-      // Store the version in Redis
-      await redisClient.set("appVersion", version ?? 1, {
-        EX: 60 * 60 * 12, // Set expiration to 12 hours
-      });
-    }
+    // Fetch the current version from a placeholder endpoint
+    const res = await fetch(
+      "https://api.eliteacademyeg.com/wp-json/elite/v2/check-build-version?security_key=12d7e165e3b892bdf322f6c3117554249ffc2405"
+    );
+    const response = await res.json();
+    version = response.data;
 
     const hostname = req.hostname;
 
     if (hostname.split(".").length > 2) {
-      let tutorData = await redisClient.get(hostname);
-
-      if (!tutorData) {
-        // Fetch the current version from a placeholder endpoint
-        const response = await fetch(
-          "https://api.eliteacademyeg.com/wp-json/elite/v2/get-manifest?subdomain=" +
-            hostname.split(".")[0]
-        );
-        const data = await response.json();
-        tutorData = data.data;
-
-        // Store the version in Redis
-        await redisClient.set(hostname, tutorData, {
-          EX: 60 * 60 * 12, // Set expiration to 12 hours
-        });
-      }
+      // Fetch the current version from a placeholder endpoint
+      const response = await fetch(
+        "https://api.eliteacademyeg.com/wp-json/elite/v2/get-manifest?subdomain=" +
+          hostname.split(".")[0]
+      );
+      const data = await response.json();
+      tutorData = data.data;
     }
 
     // Use the version to concatenate the .js and .css file URLs
