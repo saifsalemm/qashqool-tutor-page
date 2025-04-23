@@ -30,12 +30,12 @@ app.get("*", async (req, res) => {
     }
 
     // Use the version to concatenate the .js and .css file URLs
-    const jsFile = `https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/beta/script-${
+    const jsFile = `https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/beta/${
       version ?? 1
-    }.js`;
-    const cssFile = `https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/beta/style-${
+    }/script.js`;
+    const cssFile = `https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/beta/${
       version ?? 1
-    }.css`;
+    }/style.css`;
 
     const html = `<!DOCTYPE html>
 <html dir="rtl" lang="ar">
