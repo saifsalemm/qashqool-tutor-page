@@ -1,10 +1,14 @@
 import express from "express";
+import path from "path"; // Add this import
 
 const app = express();
 const port = 3020; // 8080 is a common default
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+
+// Serve static files from the "public" directory
+app.use(express.static(path.join(process.cwd(), "public"))); // Static files are served first
 
 app.get("*", async (req, res) => {
   try {
