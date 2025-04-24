@@ -85,7 +85,7 @@ app.get("*", async (req, res) => {
         navigator.serviceWorker.getRegistration().then((e) => {
           e ||
             navigator.serviceWorker
-              .register("https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/utils/firebase-messaging-sw.js")
+              .register("./firebase-messaging-sw.js")
               .then((e) => {
                 console.log("Service worker registered:", e), e.update();
               })
