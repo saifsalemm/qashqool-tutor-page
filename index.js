@@ -21,9 +21,20 @@ app.get("*", async (req, res) => {
 
     const hostname = req.hostname;
 
+    let env = "prod";
+
+    const isBeta = hostname == "beta.qashqool.com";
+    const isDev = hostname == "dev.qashqool.com";
+
+    if (isBeta) {
+      env = "beta";
+    } else if (isDev) {
+      env = "dev";
+    }
+
     let tutorData = null;
 
-    if (hostname.split(".").length > 2) {
+    if (hostname.split(".").length > 2 && !isBeta && !isDev) {
       // Fetch the current version from a placeholder endpoint
       const response2 = await fetch(
         "https://api.eliteacademyeg.com/wp-json/elite/v2/get-manifest?subdomain=" +
@@ -34,10 +45,10 @@ app.get("*", async (req, res) => {
     }
 
     // Use the version to concatenate the .js and .css file URLs
-    const jsFile = `https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/beta/${
+    const jsFile = `https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/${env}/${
       version ?? 1
     }/script.js`;
-    const cssFile = `https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/beta/${
+    const cssFile = `https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/${env}/${
       version ?? 1
     }/style.css`;
 
