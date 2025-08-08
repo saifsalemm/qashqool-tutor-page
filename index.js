@@ -56,7 +56,10 @@ app.get("*", async (req, res) => {
 <html dir="rtl" lang="ar">
   <head>
     <meta charset="UTF-8" />
-    <link id="teacher-favicon" rel="icon" href="" />
+    <link id="teacher-favicon" rel="icon" href="${
+      tutorData?.appleIcon ??
+      "https://eliteacademymedia.s3.us-east-1.amazonaws.com/qashqool_assets/media/qashqool-logo-dark.jpg"
+    }" />
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1viewport-fit=cover"
@@ -64,7 +67,7 @@ app.get("*", async (req, res) => {
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Teacher Academy" />
     <meta name="application-name" content="&nbsp;" />
-    <title id="teacher-title"></title>
+    <title id="teacher-title">${tutorData?.name}</title>
     <link
       rel="stylesheet"
       href="https://unpkg.com/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
